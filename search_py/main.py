@@ -1,6 +1,13 @@
 import typer
+from search_py.tknizer import tokenizer_iter
 
 app = typer.Typer()
+
+
+@app.command()
+def index(folder: str):
+    for path, token in tokenizer_iter(folder):
+        print(path, token)
 
 
 @app.command()
