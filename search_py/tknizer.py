@@ -12,9 +12,16 @@ def python_files_iter(folder: str):
 
 
 def file_tokens_iter(file: Path):
+    with open('stop.txt') as f:
+        stop_words = [line.strip() for line in f.readlines()]
+
     with tokenize.open(file) as f:
         tokens = tokenize.generate_tokens(f.readline)
         for token in tokens:
+            if token.string in stop_words:
+                continue
+            if len(token.string.strip()) == 0:
+                continue
             yield token
 
 
