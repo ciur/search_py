@@ -62,7 +62,8 @@ def test_write_read_two_records_with_two_postings_each(tmp_path: PosixPath):
 
     records = [
         Record(term="term1", postings=[1, 2]),
-        Record(term="term1", postings=[8, 3]),
+        Record(term="term2", postings=[8, 3, 5]),
+        Record(term="term3", postings=[9]),
     ]
 
     with open(index_db, 'wb') as f:
