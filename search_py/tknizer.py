@@ -2,6 +2,8 @@ import os
 import tokenize
 from pathlib import Path
 
+from search_py.models import Document
+
 
 def python_files_iter(folder: str):
     for root, dirs, files in os.walk(folder):
@@ -26,6 +28,8 @@ def file_tokens_iter(file: Path):
 
 
 def tokenizer_iter(folder: str):
+    doc_id = 0
     for path in python_files_iter(folder):
         for token in file_tokens_iter(path):
-            yield path, token
+            doc_id += 1
+            yield Document(doc_id=doc_id, token=token, path=path)

@@ -1,22 +1,14 @@
 import struct
 from typing import NamedTuple
 
+from search_py.models import Record, RecordHeader
+
 
 header = struct.Struct("<ii")
 
 
 def text(field: bytes) -> str:
     return field.decode('utf-8')
-
-
-class RecordHeader(NamedTuple):
-    term_size: int
-    posting_size: int
-
-
-class Record(NamedTuple):
-    term: str
-    postings: list[int]
 
 
 def write(f, records: list[Record]):

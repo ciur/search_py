@@ -1,4 +1,5 @@
 .idea
 index.db
+index.txt
 *.pyc
 __pycache__
